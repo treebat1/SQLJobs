@@ -1,0 +1,28 @@
+SQLCMD -S CHDC-CAR-THSQL2\DATAMARTDEV -U JobStartLogin -P H@ppyTu3zd@y654 -b -o "D:\SQLAgent_Output\DATAMARTDEV\TestingOnly\TestingOnly.txt"  -Q "EXEC msdb.dbo.sp_start_job 'DatabaseFileSpaceMonitor'"
+
+IF ERRORLEVEL 1 GOTO LabelErr
+IF ERRORLEVEL 0 GOTO Label0
+
+:LabelErr
+SET ERRORLEV=1
+ECHO ERRORLEVEL = %ERRORLEV%
+EXIT 1
+
+:Label0
+SET ERRORLEV=0
+ECHO %ERRORLEV%
+
+
+SQLCMD -S CHDC-CAR-THSQL2\DATAMARTDEV -U JobStartLogin -P H@ppyTu3zd@y654 -b -Q "EXEC [msdb]..RunRefreshJob;"
+
+IF ERRORLEVEL 1 GOTO LabelErr
+IF ERRORLEVEL 0 GOTO Label0
+
+:LabelErr
+SET ERRORLEV=1
+ECHO ERRORLEVEL = %ERRORLEV%
+EXIT 1
+
+:Label0
+SET ERRORLEV=0
+ECHO %ERRORLEV%

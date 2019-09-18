@@ -1,0 +1,1 @@
+PowerShell -Command "cd 'D:\P_Drive\SQLMigration\Test\SQLAgentJobs'; .\DeploySQLAgentJobsA.ps1"
